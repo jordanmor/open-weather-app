@@ -10,9 +10,9 @@
 	        <div class="col col-md-6 offset-md-3">
 	        	<br/>
 	            <h1 class="text-center">Get Your Local Forecast</h1>
-			    <form th:action="@{/}" th:object="${request}" method="post" autocomplete="off" >
+			    <form th:action="@{/}" th:object="${zipCode}" method="post" autocomplete="off" >
 			        <div class="form-group">
-			            <input type="text" th:field="*{zipCode}" placeholder="Zip Code" class="form-control"/>
+			            <input type="text" th:field="*{zip}" placeholder="Zip Code" class="form-control"/>
 			        </div>
 			        <div class="form-group">
 			            <button class="btn btn-md btn-primary btn-block" name="Submit" value="Submit" type="Submit">

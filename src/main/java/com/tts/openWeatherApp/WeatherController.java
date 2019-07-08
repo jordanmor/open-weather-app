@@ -12,15 +12,18 @@ public class WeatherController {
     @Autowired
     private WeatherService weatherService;
     
-    @GetMapping
-    public String getIndex(Model model) {
-        model.addAttribute("request", new Request());
+	@Autowired
+	ZipCodesRepository zipCodesRepository;
+    
+    @GetMapping(value="/")
+    public String getIndex(ZipCode zipCode) {
         return "index";
     }
     
     @PostMapping
-    public String postIndex(Request request, Model model) {
-        Response data = weatherService.getForecast(request.getZipCode());
+    public String postIndex(ZipCode zipCode, Model model) {
+    	zipCodesRepository.save(zipCode);
+        Response data = weatherService.getForecast(zipCode.getZip());
         model.addAttribute("data", data);
         return "index";
     }
