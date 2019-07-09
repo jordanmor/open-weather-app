@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 	    <title>Weather App</title>
-	    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="css/styles.css" type="text/css" rel="stylesheet"/>
 	</head>
 	<body>
 	<div class="container bg-light justify-content-center">
-	    <div class="row">
+	    <div id="test" class="row">
 	        <div class="col col-md-6 offset-md-3">
 	        	<br/>
 	            <h1 class="text-center">Get Your Local Forecast</h1>
@@ -31,6 +32,13 @@
 		            <p><b>Conditions:</b> <span th:text="${data.weather[0].get('description')}"></span>
 		             	<img th:src="@{${'http://openweathermap.org/img/w/' 
 		                + data.weather[0].get('icon') + '.png'}}"></p>
+	            </div>
+	            <br/>
+	            <h3 class="text-center">Recent Searches</h3>
+	            <div th:if="${zipCodes != null }">
+	            	<ul class="list-group">
+	            		<li class="list-group-item" th:each="zip:${zipCodes}" th:text="${zip.zip}"></li>
+	            	</ul>
 	            </div>
 	        </div>
 	    </div>
