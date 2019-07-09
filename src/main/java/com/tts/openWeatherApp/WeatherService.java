@@ -14,6 +14,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class WeatherService {
+	
+	private int limit = 12;
 		
     @Value("${api_key}")
     private String apiKey;
@@ -41,7 +43,7 @@ public class WeatherService {
     }
     
     public List<ZipCode> getLatestZipCodes(ZipCode zipCode) {
-    	Pageable pageable = PageRequest.of(0, 10, Sort.by("id").descending());
+    	Pageable pageable = PageRequest.of(0, limit, Sort.by("id").descending());
     	Page<ZipCode> page = zipCodesRepository.findAll(pageable);
     	return page.getContent();
     }
