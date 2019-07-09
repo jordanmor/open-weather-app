@@ -16,14 +16,10 @@
 			            <input type="text" th:field="*{zip}" placeholder="Zip Code" class="form-control"/>
 			        </div>
 			        <div class="form-group">
-			            <button class="btn btn-md btn-primary btn-block" name="Submit" value="Submit" type="Submit">
-			                                                                                    Check Weather</button>
-			        </div>
+			            <button class="btn btn-md btn-primary btn-block" name="Submit" value="Submit" type="Submit">Check Weather</button>                                                                     
+			    	</div>
 			    </form>
-	            <br/>
-	            <span th:if="${data != null && data.name == 'error'}">
-  					Invalid zip code. Weather data not found.
-  				</span>
+	            <span class="error-message" th:if="${data != null && data.name == 'error'}">Invalid zip code. Weather data not found.</span>
 	            <div th:if="${data != null && data.name != 'error'}">
 		           	<h3>Forecast for <span th:text="${data.name}"></span></h3>
 		            <p><b>Temperature:</b> <span th:text="${data.main.get('temp')}"></span> °F</p>
@@ -33,11 +29,10 @@
 		             	<img th:src="@{${'http://openweathermap.org/img/w/' 
 		                + data.weather[0].get('icon') + '.png'}}"></p>
 	            </div>
-	            <br/>
-	            <h3 class="text-center">Recent Searches</h3>
+	            <h3 class="text-center mb-3">Recent Searches</h3>
 	            <div th:if="${zipCodes != null }">
-	            	<ul class="list-group">
-	            		<li class="list-group-item" th:each="zip:${zipCodes}" th:text="${zip.zip}"></li>
+	            	<ul class="latest-zips">
+	            		<li th:each="zip:${zipCodes}" th:text="${zip.zip}"></li>
 	            	</ul>
 	            </div>
 	        </div>

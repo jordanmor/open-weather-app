@@ -1,0 +1,19 @@
+.error-message {
+	display: inline-block;
+	margin-bottom: 1rem;
+}
+
+.latest-zips {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	text-align: center;
+	list-style-type: none;
+	background-color: #fff;
+	padding: .5rem;
+}
+
+.latest-zips li {
+  flex: 0 1 25%;
+  padding: .5rem;
+}
