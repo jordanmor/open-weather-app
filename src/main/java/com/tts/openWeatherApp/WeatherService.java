@@ -47,4 +47,8 @@ public class WeatherService {
     	Page<ZipCode> page = zipCodesRepository.findAll(pageable);
     	return page.getContent();
     }
+    
+//    public Optional<ZipCode> findZipById(Long id) {
+//    	return zipCodesRepository.findById(id);
+//    }
 }

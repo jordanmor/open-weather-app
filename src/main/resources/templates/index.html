@@ -32,7 +32,9 @@
 	            <h3 class="text-center mb-3">Recent Searches</h3>
 	            <div th:if="${zipCodes != null }">
 	            	<ul class="latest-zips">
-	            		<li th:each="zip:${zipCodes}" th:text="${zip.zip}"></li>
+	            		<li th:each="zip:${zipCodes}">
+	            			<a href="/1" th:href="@{/__${zip.zip}__}" th:text="${zip.zip}"></a>
+	            		</li>
 	            	</ul>
 	            </div>
 	        </div>
