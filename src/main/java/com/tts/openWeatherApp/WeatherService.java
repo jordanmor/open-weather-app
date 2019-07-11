@@ -1,6 +1,7 @@
 package com.tts.openWeatherApp;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,10 +52,17 @@ public class WeatherService {
     	return page.getContent();
     }
     
-    public UnsplashJson getBgImage(String query) {
+    public String getWeatherDescription(Response data) {
+    	Map<String, String> weather = data.getWeather().get(0);
+    	return weather.get("description").trim().replace(" ", "-");
+    }
+    
+    public String getBgImage(Response data) {
+    	String query = getWeatherDescription(data);
     	String url = "https://api.unsplash.com/search/photos?page=1&per_page=1&query=" + 
     			query + "&client_id=" + clientId;
     	RestTemplate restTemplate = new RestTemplate();
-    	return restTemplate.getForObject(url, UnsplashJson.class);
+    	UnsplashJson result = restTemplate.getForObject(url, UnsplashJson.class);
+    	return result.getResults().get(0).getUrls().getRegular();
     }
 }

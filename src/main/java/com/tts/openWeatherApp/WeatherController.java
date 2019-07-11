@@ -1,7 +1,5 @@
 package com.tts.openWeatherApp;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,12 +25,9 @@ public class WeatherController {
     @PostMapping("/")
     public String postIndex(ZipCode zipCode, Model model) {
         Response data = weatherService.getForecast(zipCode);
-        Map<String, String> weather = data.getWeather().get(0);
-        String description = weather.get("description").trim().replace(" ", "-");
-        UnsplashJson result = weatherService.getBgImage(description);
         model.addAttribute("data", data);
         model.addAttribute("zipCodes", weatherService.getLatestZipCodes(zipCode));
-        model.addAttribute("bgImage", result.getResults().get(0).getUrls().getRegular());
+        model.addAttribute("bgImage", weatherService.getBgImage(data));
         return "index";
     }
     
@@ -42,6 +37,7 @@ public class WeatherController {
         Response data = weatherService.getForecast(zipCode);
         model.addAttribute("data", data);
         model.addAttribute("zipCodes", weatherService.getLatestZipCodes(zipCode));
+        model.addAttribute("bgImage", weatherService.getBgImage(data));
         return "index";
     }
 }
