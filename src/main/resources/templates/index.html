@@ -4,10 +4,12 @@
 	    <title>Weather App</title>
 	    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
 	    <link href="css/styles.css" type="text/css" rel="stylesheet"/>
+	    
 	</head>
 	<body>
 	<div class="container bg-light justify-content-center">
-	    <div id="test" class="row">
+	    <!-- <div class="weather-bg row" th:style="'background-image:url(' + @{${bgImage}} + ');'"> -->
+	    <div class="weather-bg row" th:style="'background-image:url(' + ${bgImage} + ');'">
 	        <div class="col col-md-6 offset-md-3">
 	        	<br/>
 	            <h1 class="text-center">Get Your Local Forecast</h1>

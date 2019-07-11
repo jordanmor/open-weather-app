@@ -20,6 +20,9 @@ public class WeatherService {
     @Value("${api_key}")
     private String apiKey;
     
+    @Value("${client_id}")
+    private String clientId;
+    
 	@Autowired
 	ZipCodesRepository zipCodesRepository;
     
@@ -48,7 +51,10 @@ public class WeatherService {
     	return page.getContent();
     }
     
-//    public Optional<ZipCode> findZipById(Long id) {
-//    	return zipCodesRepository.findById(id);
-//    }
+    public UnsplashJson getBgImage(String query) {
+    	String url = "https://api.unsplash.com/search/photos?page=1&per_page=1&query=" + 
+    			query + "&client_id=" + clientId;
+    	RestTemplate restTemplate = new RestTemplate();
+    	return restTemplate.getForObject(url, UnsplashJson.class);
+    }
 }
