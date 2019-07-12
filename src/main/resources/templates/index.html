@@ -8,11 +8,12 @@
 	</head>
 	<body>
 	<div class="container bg-light justify-content-center">
-	    <!-- <div class="weather-bg row" th:style="'background-image:url(' + @{${bgImage}} + ');'"> -->
 	    <div class="weather-bg row" th:style="'background-image:url(' + ${bgImage} + ');'">
-	        <div class="col col-md-6 offset-md-3">
+	        <div class="weather-text col col-md-6 offset-md-3">
 	        	<br/>
-	            <h1 class="text-center">Get Your Local Forecast</h1>
+	        	<div class="title overlay">
+	            	<h1 class="text-center">Get Your Local Forecast</h1>
+	        	</div>
 			    <form th:action="@{/}" th:object="${zipCode}" method="post" autocomplete="off" >
 			        <div class="form-group">
 			            <input type="text" th:field="*{zip}" placeholder="Zip Code" class="form-control"/>
@@ -22,7 +23,7 @@
 			    	</div>
 			    </form>
 	            <span class="error-message" th:if="${data != null && data.name == 'error'}">Invalid zip code. Weather data not found.</span>
-	            <div th:if="${data != null && data.name != 'error'}">
+	            <div class="forecast" th:if="${data != null && data.name != 'error'}">
 		           	<h3>Forecast for <span th:text="${data.name}"></span></h3>
 		            <p><b>Temperature:</b> <span th:text="${data.main.get('temp')}"></span> °F</p>
 		            <p><b>Cloud Cover:</b> <span th:text="${data.clouds.get('all')}"></span> %</p>
@@ -31,9 +32,11 @@
 		             	<img th:src="@{${'http://openweathermap.org/img/w/' 
 		                + data.weather[0].get('icon') + '.png'}}"></p>
 	            </div>
-	            <h3 class="text-center mb-3">Recent Searches</h3>
-	            <div th:if="${zipCodes != null }">
-	            	<ul class="latest-zips">
+	            <div class="recent overlay">
+	            	<h3 class="text-center">Recent Searches</h3>	            
+	            </div>
+	            <div class="latest-zips" th:if="${zipCodes != null }">
+	            	<ul>
 	            		<li th:each="zip:${zipCodes}">
 	            			<a href="/1" th:href="@{/__${zip.zip}__}" th:text="${zip.zip}"></a>
 	            		</li>

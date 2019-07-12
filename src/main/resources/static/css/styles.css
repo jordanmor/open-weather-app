@@ -1,19 +1,66 @@
+.overlay h1,
+.overlay h3 {
+	color: #fff;
+	margin: 0;
+	padding: 0;
+}
+
 .error-message {
 	display: inline-block;
 	margin-bottom: 1rem;
 }
 
+.overlay {
+	padding: .5rem 0;
+	background-color: rgba(85,85,85,0.95);
+}
+
+.title.overlay {
+	margin-bottom: 1rem;
+	border-radius: 4px;
+}
+
+.recent {
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+}
+
 .latest-zips {
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.latest-zips ul {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
 	text-align: center;
 	list-style-type: none;
-	background-color: #fff;
+	background-color: rgba(255,255,255,0.9);
 	padding: .5rem;
 }
 
 .latest-zips li {
   flex: 0 1 25%;
   padding: .5rem;
+}
+
+.forecast {
+	padding: 1rem 1rem 0;
+	background: rgba(255,255,255,0.9);
+	border-radius: 4px;
+}
+
+.weather-bg {
+	margin-top: 1.5rem;
+	padding: 1rem;
+	background-repeat: no-repeat;
+	background-position: center center; 
+	background-size: cover;
+	border-radius: 4px;
+}
+
+.weather-text {
+	background-color: rgba(230,230,230,0.5);
+	border-radius: 4px;
 }
