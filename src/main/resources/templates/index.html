@@ -11,17 +11,23 @@
 	    <div class="weather-bg row" th:style="'background-image:url(' + ${bgImage} + ');'">
 	        <div class="weather-text col col-md-6 offset-md-3">
 	        	<br/>
-	        	<div class="title overlay">
-	            	<h1 class="text-center">Get Your Local Forecast</h1>
+	        	<div class="search">
+		        	<div class="title overlay">
+		            	<h1 class="text-center">Get Your Local Forecast</h1>
+		        	</div>
+		        	<div class="search-form">
+		        		<div>
+			        		<form th:action="@{/}" th:object="${zipCode}" method="post" autocomplete="off" >
+						        <div class="form-group">
+						            <input type="text" th:field="*{zip}" placeholder="Zip Code" id="searchInput" class="form-control text-center"/>
+						        </div>
+						        <div class="form-group search-btn">
+						            <button class="btn btn-md btn-primary btn-block" name="Submit" value="Submit" type="Submit">Check Weather</button>                                                                     
+						    	</div>
+						    </form>
+		        		</div>
+		        	</div>
 	        	</div>
-			    <form th:action="@{/}" th:object="${zipCode}" method="post" autocomplete="off" >
-			        <div class="form-group">
-			            <input type="text" th:field="*{zip}" placeholder="Zip Code" class="form-control"/>
-			        </div>
-			        <div class="form-group">
-			            <button class="btn btn-md btn-primary btn-block" name="Submit" value="Submit" type="Submit">Check Weather</button>                                                                     
-			    	</div>
-			    </form>
 	            <span class="error-message" th:if="${data != null && data.name == 'error'}">Invalid zip code. Weather data not found.</span>
 	            <div class="forecast" th:if="${data != null && data.name != 'error'}">
 		           	<h3>Forecast for <span th:text="${data.name}"></span></h3>
@@ -45,6 +51,8 @@
 	        </div>
 	    </div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script src="js/custom.js"></script>
 	</body>
 </html>
